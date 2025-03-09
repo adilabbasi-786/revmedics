@@ -4,7 +4,7 @@ import Link from "next/link";
 const ServiceCard = ({ icon: Icon, title, description, href }) => (
   <Link
     href={href}
-    className="bg-white rounded-2xl p-8 shadow-lg  hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center group"
+    className="bg-white rounded-2xl p-8 shadow-lg border-2 border-transparent hover:border-gray-900 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col items-center text-center group"
   >
     <div className="mb-6 text-[#1e3a5f]">
       <Icon size={48} strokeWidth={1.5} />
@@ -78,7 +78,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:pl-12 pl-4">
           {services.map((service, index) => (
             <ServiceCard
               key={index}

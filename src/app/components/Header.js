@@ -55,7 +55,7 @@ const Header = () => {
       {/* Top Bar */}
       <div className="bg-[#1e3a5f] text-white py-2 px-4 md:px-6 ">
         <div className="container mx-auto flex flex-wrap justify-between items-center">
-          <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 w-full md:w-auto mb-2 md:mb-0 pl-20">
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 w-full md:w-auto mb-2 md:mb-0   lg:pl-20">
             <a
               href="tel:(800)516-5234"
               className="flex items-center text-sm gap-1 hover:text-gray-200"
@@ -86,7 +86,7 @@ const Header = () => {
 
       {/* Main Navigation */}
       <div className="bg-white py-3 px-4 md:px-6">
-        <div className="container mx-auto flex justify-between items-center pl-20">
+        <div className="container mx-auto flex justify-between items-center lg:pl-20 pl-4">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="relative w-32 h-12">
@@ -151,80 +151,6 @@ const Header = () => {
               <Search size={20} />
             </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-gray-700 focus:outline-none"
-            onClick={toggleMenu}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div
-        className={`lg:hidden bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? "max-h-screen" : "max-h-0"
-        }`}
-      >
-        <div className="container mx-auto px-4 py-2">
-          <div className="flex justify-end mb-4">
-            <button className="bg-[#1e3a5f] text-white p-2 rounded-md hover:bg-[#2a4e7a] transition-colors">
-              <Search size={20} />
-            </button>
-          </div>
-          {/* <nav className="flex flex-col space-y-4 pb-4">
-            {navItems.map((item) => (
-              <div key={item.name} className="border-b border-gray-200 pb-2">
-                <div className="flex justify-between items-center">
-                  <Link href={item.link} className="text-gray-700 font-medium">
-                    {item.name}
-                  </Link>
-                  {item.hasDropdown && (
-                    <button
-                      onClick={() => toggleDropdown(item.name)}
-                      className="p-1"
-                    >
-                      <ChevronDown
-                        size={16}
-                        className={`transition-transform ${
-                          activeDropdown === item.name ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                  )}
-                </div>
-
-                {item.hasDropdown && (
-                  <div
-                    className={`mt-2 ml-4 space-y-2 transition-all duration-200 ${
-                      activeDropdown === item.name ? "block" : "hidden"
-                    }`}
-                  >
-                    <Link
-                      href={`${item.link}/option1`}
-                      className="block py-1 text-sm text-gray-600"
-                    >
-                      Option 1
-                    </Link>
-                    <Link
-                      href={`${item.link}/option2`}
-                      className="block py-1 text-sm text-gray-600"
-                    >
-                      Option 2
-                    </Link>
-                    <Link
-                      href={`${item.link}/option3`}
-                      className="block py-1 text-sm text-gray-600"
-                    >
-                      Option 3
-                    </Link>
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav> */}
         </div>
       </div>
     </header>

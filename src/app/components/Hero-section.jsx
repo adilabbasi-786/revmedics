@@ -26,7 +26,7 @@ export default function HeroSection() {
 
         {/* Content container */}
         <div className="relative z-10 container mx-auto px-4 py-16 md:py-24 flex flex-col justify-center h-full">
-          <div className="max-w-3xl pl-20">
+          <div className="max-w-3xl lg:pl-20 pl-4">
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               #1 Medical Billing <br className="hidden sm:block" />
@@ -122,7 +122,7 @@ export default function HeroSection() {
         <div className="container mx-auto px-4 py-6 relative z-20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Action buttons container */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto pl-20">
+            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto lg:pl-20 pl-4">
               {/* Free Practice Audit Button */}
               <Link
                 href="/audit"

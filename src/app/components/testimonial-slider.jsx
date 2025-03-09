@@ -87,15 +87,17 @@ export default function TestimonialSlider() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-16 px-4 md:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">
-          Customer Feedback That Makes Us Proud
-        </h2>
-        <p className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
-          Don't just take our word for it - see what our happy clients are
-          saying about our personalized medical billing services.
-        </p>
+    <section className="relative">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">
+            Customer Feedback That Makes Us Proud
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Don't just take our word for it - see what our happy clients are
+            saying about our personalized medical billing services.
+          </p>
+        </div>
 
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
@@ -133,15 +135,15 @@ export default function TestimonialSlider() {
           </div>
 
           <button
-            className="absolute ml-[-40px]  cursor-pointer left-0  top-1/2 -translate-y-1/2 -translate-x-4 bg-white shadow-lg rounded-full p-2 hidden md:block"
+            className="absolute cursor-pointer left-0 ml-[-40px] top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hidden md:block"
             onClick={scrollPrev}
             disabled={!prevBtnEnabled}
           >
-            <ChevronLeft className="w-6 h-6 " />
+            <ChevronLeft className="w-6 h-6" />
           </button>
 
           <button
-            className="absolute cursor-pointer  right-0 mr-[-40px] top-1/2 -translate-y-1/2 translate-x-4 bg-white shadow-lg rounded-full p-2 hidden md:block"
+            className="absolute cursor-pointer right-0 mr-[-40px] top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hidden md:block"
             onClick={scrollNext}
             disabled={!nextBtnEnabled}
           >
@@ -149,9 +151,11 @@ export default function TestimonialSlider() {
           </button>
         </div>
 
-        <Button className="mt-12 bg-gray-900 text-white hover:bg-gray-800 transition-colors">
-          Read More Reviews
-        </Button>
+        <div className="mt-12 text-center">
+          <Button className="bg-gray-900 text-white hover:bg-gray-800 transition-colors">
+            Read More Reviews
+          </Button>
+        </div>
       </div>
     </section>
   );

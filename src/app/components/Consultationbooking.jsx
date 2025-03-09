@@ -20,10 +20,49 @@ export default function ConsultationBooking() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
+
+    const slackWebhookUrl = "YOUR_SLACK_WEBHOOK_URL"; // Replace with your actual Webhook URL
+
+    const message = {
+      text: `📩 *New Consultation Booking:*\n\n
+      *Service Type:* ${formData.serviceType}\n
+      *Healthcare Type:* ${formData.healthcareType}\n
+      *Full Name:* ${formData.fullName}\n
+      *Email:* ${formData.email}\n
+      *Phone:* ${formData.phone}\n
+      *Website:* ${formData.website || "N/A"}\n
+      *Message:* ${formData.message}\n
+      *SMS Consent:* ${formData.smsConsent === "yes" ? "✅ Yes" : "❌ No"}`,
+    };
+
+    try {
+      const response = await fetch(slackWebhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(message),
+      });
+
+      if (response.ok) {
+        alert("Form submitted successfully and sent to Slack!");
+        setFormData({
+          serviceType: "",
+          healthcareType: "",
+          fullName: "",
+          email: "",
+          phone: "",
+          website: "",
+          message: "",
+          smsConsent: "",
+        });
+      } else {
+        alert("Failed to send data to Slack.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred.");
+    }
   };
 
   return (
