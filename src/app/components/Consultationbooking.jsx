@@ -15,6 +15,9 @@ export default function ConsultationBooking() {
     smsConsent: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -22,30 +25,24 @@ export default function ConsultationBooking() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const slackWebhookUrl = "YOUR_SLACK_WEBHOOK_URL"; // Replace with your actual Webhook URL
-
-    const message = {
-      text: `📩 *New Consultation Booking:*\n\n
-      *Service Type:* ${formData.serviceType}\n
-      *Healthcare Type:* ${formData.healthcareType}\n
-      *Full Name:* ${formData.fullName}\n
-      *Email:* ${formData.email}\n
-      *Phone:* ${formData.phone}\n
-      *Website:* ${formData.website || "N/A"}\n
-      *Message:* ${formData.message}\n
-      *SMS Consent:* ${formData.smsConsent === "yes" ? "✅ Yes" : "❌ No"}`,
-    };
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
-      const response = await fetch(slackWebhookUrl, {
+      // Send to our Next.js API route
+      const response = await fetch("/api/slack", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(message),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        alert("Form submitted successfully and sent to Slack!");
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus("success");
+        // Reset form
         setFormData({
           serviceType: "",
           healthcareType: "",
@@ -57,11 +54,13 @@ export default function ConsultationBooking() {
           smsConsent: "",
         });
       } else {
-        alert("Failed to send data to Slack.");
+        throw new Error(result.error || "Failed to send message");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("An error occurred.");
+      console.error("Error sending message:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -102,150 +101,247 @@ export default function ConsultationBooking() {
               </h2>
             </div>
 
-            <form onSubmit={handleSubmit}>
-              {/* Service Type Dropdown */}
-              <div className="mb-4 relative">
-                <select
-                  name="serviceType"
-                  value={formData.serviceType}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
-                  required
-                >
-                  <option value="" disabled>
-                    Select Service Type
-                  </option>
-                  <option value="billing">Medical Billing</option>
-                  <option value="coding">Medical Coding</option>
-                  <option value="rcm">Revenue Cycle Management</option>
-                </select>
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
-                </div>
-              </div>
-
-              {/* Healthcare Type Dropdown */}
-              <div className="mb-4 relative">
-                <select
-                  name="healthcareType"
-                  value={formData.healthcareType}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
-                  required
-                >
-                  <option value="" disabled>
-                    Select Healthcare Type
-                  </option>
-                  <option value="primary">Primary Care</option>
-                  <option value="specialty">Specialty Practice</option>
-                  <option value="hospital">Hospital</option>
-                  <option value="clinic">Clinic</option>
-                </select>
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
-                </div>
-              </div>
-
-              {/* Name and Email */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <input
-                  type="text"
-                  name="fullName"
-                  placeholder="Full Name"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
-                  required
-                />
-              </div>
-
-              {/* Phone and Website */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {submitStatus === "success" ? (
+              <div className="bg-green-50 border border-green-200 rounded-md p-4 mb-6">
                 <div className="flex">
-                  <div className="flex items-center justify-center bg-gray-100 border border-gray-300 border-r-0 rounded-l-md px-3">
-                    <span className="text-sm">🇺🇸</span>
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-5 w-5 text-green-400"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                   </div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="(201) 555-0123"
-                    value={formData.phone}
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-green-800">
+                      Consultation Request Sent
+                    </h3>
+                    <div className="mt-2 text-sm text-green-700">
+                      <p>
+                        Thank you for your interest! Our team will contact you
+                        shortly.
+                      </p>
+                    </div>
+                    <div className="mt-4">
+                      <button
+                        type="button"
+                        onClick={() => setSubmitStatus(null)}
+                        className="text-sm font-medium text-green-600 hover:text-green-500"
+                      >
+                        Submit another request
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                {/* Service Type Dropdown */}
+                <div className="mb-4 relative">
+                  <select
+                    name="serviceType"
+                    value={formData.serviceType}
                     onChange={handleChange}
-                    className="p-3 border border-gray-300 rounded-r-md w-full focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
+                    className="w-full p-3 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
+                    required
+                  >
+                    <option value="" disabled>
+                      Select Service Type
+                    </option>
+                    <option value="billing">Medical Billing</option>
+                    <option value="coding">Medical Coding</option>
+                    <option value="rcm">Revenue Cycle Management</option>
+                  </select>
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                    <ChevronDown className="h-5 w-5 text-gray-400" />
+                  </div>
+                </div>
+
+                {/* Healthcare Type Dropdown */}
+                <div className="mb-4 relative">
+                  <select
+                    name="healthcareType"
+                    value={formData.healthcareType}
+                    onChange={handleChange}
+                    className="w-full p-3 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
+                    required
+                  >
+                    <option value="" disabled>
+                      Select Healthcare Type
+                    </option>
+                    <option value="primary">Primary Care</option>
+                    <option value="specialty">Specialty Practice</option>
+                    <option value="hospital">Hospital</option>
+                    <option value="clinic">Clinic</option>
+                  </select>
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                    <ChevronDown className="h-5 w-5 text-gray-400" />
+                  </div>
+                </div>
+
+                {/* Name and Email */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Full Name"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
                     required
                   />
                 </div>
-                <input
-                  type="text"
-                  name="website"
-                  placeholder="Website (Optional)"
-                  value={formData.website}
-                  onChange={handleChange}
-                  className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
-                />
-              </div>
 
-              {/* Message */}
-              <div className="mb-4">
-                <textarea
-                  name="message"
-                  placeholder="Message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="4"
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
-                  required
-                ></textarea>
-              </div>
-
-              {/* SMS Consent */}
-              <div className="mb-6">
-                <p className="text-gray-600 mb-2">
-                  Do you agree to receive SMS from iRCM, Inc?
-                </p>
-                <div className="flex gap-4">
-                  <label className="flex items-center">
+                {/* Phone and Website */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div className="flex">
+                    <div className="flex items-center justify-center bg-gray-100 border border-gray-300 border-r-0 rounded-l-md px-3">
+                      <span className="text-sm">🇺🇸</span>
+                    </div>
                     <input
-                      type="radio"
-                      name="smsConsent"
-                      value="yes"
-                      checked={formData.smsConsent === "yes"}
+                      type="tel"
+                      name="phone"
+                      placeholder="(201) 555-0123"
+                      value={formData.phone}
                       onChange={handleChange}
-                      className="mr-2 h-4 w-4 text-[#1e3a6e]"
+                      className="p-3 border border-gray-300 rounded-r-md w-full focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
+                      required
                     />
-                    <span>Yes</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="smsConsent"
-                      value="no"
-                      checked={formData.smsConsent === "no"}
-                      onChange={handleChange}
-                      className="mr-2 h-4 w-4 text-[#1e3a6e]"
-                    />
-                    <span>No</span>
-                  </label>
+                  </div>
+                  <input
+                    type="text"
+                    name="website"
+                    placeholder="Website (Optional)"
+                    value={formData.website}
+                    onChange={handleChange}
+                    className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
+                  />
                 </div>
-              </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="bg-[#1e3a6e] text-white py-3 px-8 rounded-full font-medium hover:bg-[#152c54] transition-colors duration-300"
-              >
-                Book Now
-              </button>
-            </form>
+                {/* Message */}
+                <div className="mb-4">
+                  <textarea
+                    name="message"
+                    placeholder="Message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows="4"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a6e] focus:border-transparent"
+                    required
+                  ></textarea>
+                </div>
+
+                {/* SMS Consent */}
+                <div className="mb-6">
+                  <p className="text-gray-600 mb-2">
+                    Do you agree to receive SMS from iRCM, Inc?
+                  </p>
+                  <div className="flex gap-4">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="smsConsent"
+                        value="yes"
+                        checked={formData.smsConsent === "yes"}
+                        onChange={handleChange}
+                        className="mr-2 h-4 w-4 text-[#1e3a6e]"
+                      />
+                      <span>Yes</span>
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="smsConsent"
+                        value="no"
+                        checked={formData.smsConsent === "no"}
+                        onChange={handleChange}
+                        className="mr-2 h-4 w-4 text-[#1e3a6e]"
+                      />
+                      <span>No</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-3 px-4 bg-[#1e3a6e] text-white font-medium rounded-md hover:bg-[#15294d] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1e3a6e] ${
+                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Schedule Consultation"
+                  )}
+                </button>
+
+                {submitStatus === "error" && (
+                  <div className="mt-4 bg-red-50 border border-red-200 rounded-md p-4">
+                    <div className="flex">
+                      <div className="flex-shrink-0">
+                        <svg
+                          className="h-5 w-5 text-red-400"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div className="ml-3">
+                        <h3 className="text-sm font-medium text-red-800">
+                          Error sending your request
+                        </h3>
+                        <div className="mt-2 text-sm text-red-700">
+                          <p>Please try again or contact us directly.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </form>
+            )}
           </div>
         </div>
       </div>
