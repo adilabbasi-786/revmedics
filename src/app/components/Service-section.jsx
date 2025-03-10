@@ -44,23 +44,23 @@ export default function ServicesSection() {
     },
     {
       icon: BarChart,
-      title: "Medical Coding Services",
+      title: "Denial Management Services",
       description:
-        "Updated ICD-10 and CPT coding systems are utilized to maximize reimbursements and reduce claim errors.",
+        "Effective denial management identifies causes, resolves disputes, and ensures timely appeals for improved claim outcomes.",
       href: "/services/medical-coding",
     },
     {
       icon: BarChart,
-      title: "Medical Coding Services",
+      title: "Out of Network Billing Services",
       description:
-        "Updated ICD-10 and CPT coding systems are utilized to maximize reimbursements and reduce claim errors.",
+        "Our expertise ensures you avoid underpayments and receive timely compensation for out-of-network claims.",
       href: "/services/medical-coding",
     },
     {
       icon: BarChart,
-      title: "Medical Coding Services",
+      title: "Revenue Cycle Management",
       description:
-        "Updated ICD-10 and CPT coding systems are utilized to maximize reimbursements and reduce claim errors.",
+        "Our services are expertly tailored to align with your specialty to help you boost profits and grow your practice efficiently.",
       href: "/services/medical-coding",
     },
   ];

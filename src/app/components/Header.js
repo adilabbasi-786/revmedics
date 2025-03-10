@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
+
 import {
   Phone,
   Mail,
@@ -47,13 +49,11 @@ const Header = () => {
   ];
 
   return (
-    <header
-      className={`w-full  fixed top-0 left-0 z-50 transition-all duration-300 ${
-        isScrolled ? "shadow-md" : ""
-      }`}
-    >
+    <header className="w-full z-50">
       {/* Top Bar */}
-      <div className="bg-[#1e3a5f] text-white py-2 px-4 md:px-6 ">
+      <div
+        className={`bg-[#1e3a5f] text-white py-2 px-4 md:px-6 fixed top-0 left-0 w-full`}
+      >
         <div className="container mx-auto flex flex-wrap justify-between items-center">
           <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 w-full md:w-auto mb-2 md:mb-0   lg:pl-20">
             <a
@@ -85,18 +85,17 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="bg-white py-3 px-4 md:px-6">
+      <div className="bg-white py-3 px-4 md:px-6 mt-12 lg:mt-8">
         <div className="container mx-auto flex justify-between items-center lg:pl-20 pl-4">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-32 h-12">
-              <div className="flex items-center">
-                <div className="text-[#1e3a5f] font-bold text-2xl">
-                  <span className="text-[#1e3a5f]">i</span>
-                  <span className="text-[#1e3a5f]">RCM</span>
-                </div>
-              </div>
-            </div>
+            <Image
+              src="/logo.png" // You'll need to add your logo
+              alt="iRCM Logo"
+              width={100}
+              height={80}
+              className="mb-4"
+            />
           </Link>
 
           {/* Desktop Navigation */}

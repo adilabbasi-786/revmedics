@@ -14,12 +14,10 @@ export default function Home() {
 
       <HeroSection className="mb-24" />
       <div className="container mx-auto px-4">
-        <div className="space-y-24">
-          <ServicesSection />
-          <WhyChooseUs />
-          <ConsultationBooking />
-          <TestimonialSlider />
-        </div>
+        <ServicesSection />
+        <WhyChooseUs />
+        <ConsultationBooking />
+        <TestimonialSlider />
       </div>
 
       <Footer />

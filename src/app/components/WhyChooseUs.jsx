@@ -58,7 +58,7 @@ export default function WhyChooseUs() {
           <h2 className="text-4xl font-bold mb-4">Why Choose Us?</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Don't settle for average profits, maximize your revenue and gain a
-            deeper understanding of your healthcare business with iRCM.
+            deeper understanding of your healthcare business with Revmedics.
           </p>
         </div>
 

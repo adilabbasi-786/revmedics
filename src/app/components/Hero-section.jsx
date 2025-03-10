@@ -11,7 +11,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="relative w-full min-h-[600px] md:min-h-[600px] overflow-hidden mt-[150px] lg:mt-12">
+      <section className="relative w-full min-h-[600px] md:min-h-[600px] overflow-hidden mt-[10px] lg:mt-4">
         {/* Background with overlay */}
         <div className="absolute inset-0 z-0 ">
           <Image
@@ -35,12 +35,12 @@ export default function HeroSection() {
 
             {/* Description */}
             <p className="text-white/90 text-base md:text-lg mb-10 max-w-2xl">
-              iRCM leads as a top medical billing company in NY with
+              Revmedics leads as a top medical billing company in NY with
               cutting-edge AI technology and certified skilled professionals.
               Our complete billing solution streamlines your practice's
               reimbursement processing and ensures effective revenue cycle
-              management. Connect with our RCM experts today to optimize your
-              practice processes and uplift its revenue.
+              management. Connect with our Revmedics experts today to optimize
+              your practice processes and uplift its revenue.
             </p>
 
             {/* Badges container */}
@@ -68,7 +68,7 @@ export default function HeroSection() {
                   </svg>
                 </div>
                 <div className="text-white">
-                  <div className="text-sm font-medium">iRCM, Inc</div>
+                  <div className="text-sm font-medium">Revmedics, Inc</div>
                   <div className="flex items-center">
                     <div className="flex">
                       {[...Array(5)].map((_, i) => (

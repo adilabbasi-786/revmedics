@@ -10,14 +10,14 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Image
-              src="/ircm-logo.png" // You'll need to add your logo
+              src="/logo.png" // You'll need to add your logo
               alt="iRCM Logo"
               width={120}
-              height={50}
+              height={80}
               className="mb-4"
             />
             <p className="text-gray-600 pr-4">
-              iRCM is an industry leader with innovative technology and an
+              Revmedics is an industry leader with innovative technology and an
               expert team. We are a complete Revenue Cycle Management solution
               that streamlines reimbursements and delivers remarkable results.
             </p>
