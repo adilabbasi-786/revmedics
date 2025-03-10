@@ -15,7 +15,7 @@ export default function HeroSection() {
         {/* Background with overlay */}
         <div className="absolute inset-0 z-0 ">
           <Image
-            src="/placeholder.svg?height=1080&width=1920"
+            src="/newyork.jpg"
             alt="New York City skyline"
             fill
             className="object-cover"
