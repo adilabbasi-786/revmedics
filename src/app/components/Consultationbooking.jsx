@@ -17,6 +17,8 @@ export default function ConsultationBooking() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,9 +29,16 @@ export default function ConsultationBooking() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    // Log form data for debugging
+    console.log("Submitting form data:", formData);
 
     try {
-      // Send to our Next.js API route
+      console.log("Sending request to /api/slack...");
+
+      // First try the Slack API route
       const response = await fetch("/api/slack", {
         method: "POST",
         headers: {
@@ -38,10 +47,27 @@ export default function ConsultationBooking() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      console.log("Response status:", response.status);
+
+      // Get the full response
+      let result;
+      try {
+        result = await response.json();
+        console.log("Response data:", result);
+      } catch (jsonError) {
+        console.error("Error parsing JSON response:", jsonError);
+        throw new Error("Failed to parse server response");
+      }
 
       if (response.ok && result.success) {
+        console.log("Form submitted successfully");
         setSubmitStatus("success");
+
+        // Set custom success message if provided
+        if (result.message) {
+          setSuccessMessage(result.message);
+        }
+
         // Reset form
         setFormData({
           serviceType: "",
@@ -54,10 +80,20 @@ export default function ConsultationBooking() {
           smsConsent: "",
         });
       } else {
-        throw new Error(result.error || "Failed to send message");
+        // Handle API error with details
+        console.error("API error:", result);
+        setErrorMessage(result.error || "Failed to send message");
+        if (result.details) {
+          console.error("Error details:", result.details);
+        }
+        setSubmitStatus("error");
       }
     } catch (error) {
+      // Handle network or parsing errors
       console.error("Error sending message:", error);
+      setErrorMessage(
+        "Network error: " + (error.message || "Failed to connect to server")
+      );
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -123,8 +159,8 @@ export default function ConsultationBooking() {
                     </h3>
                     <div className="mt-2 text-sm text-green-700">
                       <p>
-                        Thank you for your interest! Our team will contact you
-                        shortly.
+                        {successMessage ||
+                          "Thank you for your interest! Our team will contact you shortly."}
                       </p>
                     </div>
                     <div className="mt-4">
@@ -334,7 +370,7 @@ export default function ConsultationBooking() {
                           Error sending your request
                         </h3>
                         <div className="mt-2 text-sm text-red-700">
-                          <p>Please try again or contact us directly.</p>
+                          <p>{errorMessage}</p>
                         </div>
                       </div>
                     </div>
