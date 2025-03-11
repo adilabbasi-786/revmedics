@@ -80,7 +80,7 @@ const Header = () => {
 
       {/* Main Navigation */}
       <div className="bg-white py-3 px-4 md:px-6 mt-12 lg:mt-8">
-        <div className="container mx-auto flex justify-between items-center lg:pl-20 pl-4">
+        <div className="container mx-auto flex justify-between items-center lg:pl-20 pl-4 pt-6 lg:pt-0">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
