@@ -61,7 +61,7 @@ const Header = () => {
               className="flex items-center text-sm gap-1 hover:text-gray-200"
             >
               <Phone size={16} />
-              <span>(800) 516-5234</span>
+              <span>719-867-9977</span>
             </a>
             <a
               href="mailto:info@ircm.com"
@@ -72,15 +72,9 @@ const Header = () => {
             </a>
             <div className="flex items-center text-sm gap-1">
               <MapPin size={16} />
-              <span>134 N 4th St, Brooklyn, NY 11249</span>
+              <span>1942 Broadway St. STE 314C Boulder CO 80302</span>
             </div>
           </div>
-          <a
-            href="/payment"
-            className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded-md text-sm transition-colors"
-          >
-            Make A Payment
-          </a>
         </div>
       </div>
 
@@ -92,9 +86,8 @@ const Header = () => {
             <Image
               src="/logo.png" // You'll need to add your logo
               alt="iRCM Logo"
-              width={100}
-              height={80}
-              className="mb-4"
+              width={110}
+              height={60}
             />
           </Link>
 
