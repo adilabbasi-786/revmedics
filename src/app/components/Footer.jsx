@@ -103,7 +103,7 @@ export default function Footer() {
                   />
                 </svg>
                 <span className="text-gray-600">
-                  134 N 4th St, Brooklyn, NY 11249
+                  1942 Broadway St. STE 314C Boulder CO 80302
                 </span>
               </li>
               <li className="flex items-center space-x-3">
@@ -120,7 +120,7 @@ export default function Footer() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                <span className="text-gray-600">(800) 516-5234</span>
+                <span className="text-gray-600">719-867-9977</span>
               </li>
               <li className="flex items-center space-x-3">
                 <svg
@@ -152,7 +152,7 @@ export default function Footer() {
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="text-gray-600">(718) 303-0763</span>
+                <span className="text-gray-600">719-867-9977</span>
               </li>
             </ul>
           </div>

@@ -284,7 +284,7 @@ export default function ConsultationBooking() {
                 {/* SMS Consent */}
                 <div className="mb-6">
                   <p className="text-gray-600 mb-2">
-                    Do you agree to receive SMS from iRCM, Inc?
+                    Do you agree to receive SMS from Revmedics, LLC?
                   </p>
                   <div className="flex gap-4">
                     <label className="flex items-center">
