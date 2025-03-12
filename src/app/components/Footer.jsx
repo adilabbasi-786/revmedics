@@ -12,9 +12,8 @@ export default function Footer() {
             <Image
               src="/logo.png" // You'll need to add your logo
               alt="iRCM Logo"
-              width={120}
+              width={150}
               height={80}
-              className="mb-4"
             />
             <p className="text-white pr-4">
               Revmedics is an industry leader with innovative technology and an
@@ -49,7 +48,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="lg:col-span-2">
-            <h3 className="text-xl font-bold mb-4 text-white">Contact Us</h3>
+            <h3 className="text-xl font-bold mb-8 text-white ">Contact Us</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <svg

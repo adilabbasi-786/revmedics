@@ -189,9 +189,34 @@ export default function ConsultationBooking() {
                     <option value="" disabled>
                       Select Service Type
                     </option>
-                    <option value="billing">Medical Billing</option>
-                    <option value="coding">Medical Coding</option>
+                    <option value="billing">Medical Billing Services</option>
+                    <option value="coding">Medical Coding services</option>
+                    <option value="Web design">Web Design and SEO</option>
                     <option value="rcm">Revenue Cycle Management</option>
+                    <option value="Medical Credentials Services">
+                      Medical Credentials Services
+                    </option>
+                    <option value="Quality Payment Program">
+                      Quality Payment Program
+                    </option>
+                    <option value="Medical Claim Processing">
+                      Medical Claim Processing
+                    </option>
+                    <option value="Medical Billing Consulting">
+                      Medical Billing Consulting{" "}
+                    </option>
+                    <option value="Outsource Medical Billing">
+                      Outsource Medical Billing{" "}
+                    </option>
+                    <option value="Patient Billing Services">
+                      Patient Billing Services{" "}
+                    </option>
+                    <option value="Professional Staffing Solutions">
+                      Professional Staffing Solutions{" "}
+                    </option>
+                    <option value="Dental Credentialing Services">
+                      Dental Credentialing Services
+                    </option>
                   </select>
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                     <ChevronDown className="h-5 w-5 text-gray-400" />
@@ -212,8 +237,28 @@ export default function ConsultationBooking() {
                     </option>
                     <option value="primary">Primary Care</option>
                     <option value="specialty">Specialty Practice</option>
+                    <option value="Private Practic">Private Practice</option>
+                    <option value="Solo Practice">Solo Practice</option>
                     <option value="hospital">Hospital</option>
                     <option value="clinic">Clinic</option>
+                    <option value="Group Practice">Group Practices</option>
+                    <option value="Health Maintenance Organization(HMOs)">
+                      Health Maintenance Organization(HMOs)
+                    </option>
+                    <option value="Intermediate Care Facility">
+                      Intermediate Care Facility
+                    </option>
+                    <option value="Accountable care organization">
+                      Accountable care organization
+                    </option>
+                    <option value="Nursing Practice">Nursing Practice</option>
+                    <option value="Home Health Agency">
+                      Home Health Agency
+                    </option>
+                    <option value="Assisted Living Facility">
+                      Assisted Living Facility
+                    </option>
+                    <option value="Other">Othery</option>
                   </select>
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                     <ChevronDown className="h-5 w-5 text-gray-400" />
