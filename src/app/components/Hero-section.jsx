@@ -15,7 +15,7 @@ export default function HeroSection() {
         {/* Background with overlay */}
         <div className="absolute inset-0 z-0 ">
           <Image
-            src="/newyork.jpg"
+            src="/col.jpg"
             alt="New York City skyline"
             fill
             className="object-cover"
@@ -30,7 +30,8 @@ export default function HeroSection() {
             {/* Heading */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               #1 Leading Medical <br className="hidden sm:block" />
-              Billing Company in <span className="text-[#4cd964]">CO </span>
+              Billing Company in{" "}
+              <span className="text-[#4cd964]">CO and Nationwide </span>
             </h1>
 
             {/* Description */}
@@ -78,22 +79,22 @@ export default function HeroSection() {
       </section>
       <section className="relative bg-[#1e3a5f] w-full overflow-hidden">
         {/* Diagonal overlay */}
-        <div className="absolute right-0 top-0 h-full w-1/3 bg-white transform skew-x-12 translate-x-32 z-10" />
+        <div className="absolute right-0 top-0 h-full w-1/2 md:w-1/3 bg-white transform skew-x-12 translate-x-32 z-10" />
 
-        <div className="container mx-auto px-4 py-6 relative z-20">
+        <div className="container mx-auto px-4 py-8 sm:py-10 relative z-20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Action buttons container */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto lg:pl-20 pl-4">
+            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto lg:pl-20 pl-4 items-stretch">
               {/* Free Practice Audit Button */}
               <Link
                 href="/audit"
                 className="group flex items-center justify-between bg-white/10 backdrop-blur-sm 
-                       hover:bg-white/20 transition-all duration-300 rounded-lg px-6 py-4 
-                       w-full sm:w-64"
+                 hover:bg-white/20 transition-all duration-300 rounded-lg px-6 py-4 
+                 w-full sm:w-64"
               >
                 <div className="flex items-center gap-3">
                   <FileText className="w-6 h-6 text-white" />
-                  <span className="text-white font-medium">
+                  <span className="text-white font-medium text-center">
                     Free Practice Audit
                   </span>
                 </div>
@@ -106,12 +107,12 @@ export default function HeroSection() {
               <Link
                 href="/connect"
                 className="group flex items-center justify-between bg-white/10 backdrop-blur-sm 
-                       hover:bg-white/20 transition-all duration-300 rounded-lg px-6 py-4 
-                       w-full sm:w-64"
+                 hover:bg-white/20 transition-all duration-300 rounded-lg px-6 py-4 
+                 w-full sm:w-64"
               >
                 <div className="flex items-center gap-3">
                   <Lock className="w-6 h-6 text-white" />
-                  <span className="text-white font-medium">
+                  <span className="text-white font-medium text-center">
                     Connect with Us
                   </span>
                 </div>
@@ -122,15 +123,17 @@ export default function HeroSection() {
             </div>
 
             {/* Contact Information */}
-            <div className="flex items-center gap-4 bg-white rounded-lg px-6 py-4 w-full md:w-auto">
+            <div className="flex items-center gap-4 bg-white rounded-lg px-6 py-4 w-full md:w-auto justify-center sm:justify-start text-center sm:text-left">
               <div className="bg-[#1e3a5f] rounded-full p-3">
                 <Phone className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="text-[#1e3a5f] text-2xl font-bold">
+                <div className="text-[#1e3a5f] text-xl sm:text-2xl font-bold">
                   719-867-9977
                 </div>
-                <div className="text-gray-600">Talk To An Expert Today</div>
+                <div className="text-gray-600 text-sm sm:text-base">
+                  Talk To An Expert Today
+                </div>
               </div>
             </div>
           </div>

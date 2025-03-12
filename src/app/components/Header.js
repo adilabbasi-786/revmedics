@@ -64,11 +64,11 @@ const Header = () => {
               <span>719-867-9977</span>
             </a>
             <a
-              href="mailto:info@ircm.com"
+              href="mailto:info@therevmedics.com"
               className="flex items-center text-sm gap-1 hover:text-gray-200"
             >
               <Mail size={16} />
-              <span>info@ircm.com</span>
+              <span>info@therevmedics.com</span>
             </a>
             <div className="flex items-center text-sm gap-1">
               <MapPin size={16} />

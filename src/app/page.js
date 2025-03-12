@@ -23,7 +23,7 @@ export default function Home() {
           <Biospace />
           <CertificationPage />
           <ConsultationBooking />
-          <TestimonialSlider />
+          {/* <TestimonialSlider /> */}
         </div>
       </main>
       <Footer />
