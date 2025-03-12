@@ -4,17 +4,13 @@ import { Facebook, Linkedin, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1e3a5f] ">
-      <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-[#1e3a5f]">
+      <div className="max-w-7xl mx-auto py-4 md:py-6">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8  ">
           {/* Company Info */}
-          <div className="space-y-4">
-            <Image
-              src="/logo.png" // You'll need to add your logo
-              alt="iRCM Logo"
-              width={150}
-              height={80}
-            />
+          <div className="space-y-4 pl-4">
+            <Image src="/logo.png" alt="iRCM Logo" width={150} height={80} />
             <p className="text-white pr-4">
               Revmedics is an industry leader with innovative technology and an
               expert team. We are a complete Revenue Cycle Management solution
@@ -22,33 +18,31 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* About Us */}
-          <div>
-            {/* <h3 className="text-xl font-bold mb-4">About Us</h3>
+          {/* Services */}
+          <div className=" pl-4 lg:pl-18 lg:mt-12 mt-0 ">
+            <h3 className="text-xl font-bold mb-4 text-white">Our Services</h3>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/company"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Our Company
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Contact Us
-                </Link>
-              </li>
-            </ul> */}
+              {[
+                "Medical Billing Services",
+                "Medical Credentials Services",
+                "Medical Coding Services",
+                "Digital Management Services",
+                "Out of Network Billing Services",
+                "Revenue Cycle Management",
+              ].map((service, idx) => (
+                <li key={idx} className="text-gray-200">
+                  {service}
+                </li>
+              ))}
+            </ul>
           </div>
 
+          {/* Empty Column for Flexibility or Future Use */}
+          <div></div>
+
           {/* Contact Info */}
-          <div className="lg:col-span-2">
-            <h3 className="text-xl font-bold mb-8 text-white ">Contact Us</h3>
+          <div className="lg:ml-[-200px] ml-0 lg:mt-12 mt-0 pl-4 ">
+            <h3 className="text-xl font-bold mb-4 text-white">Contact Us</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <svg
@@ -106,85 +100,42 @@ export default function Footer() {
                 </svg>
                 <span className="text-gray-200">info@therevmedics.com</span>
               </li>
-              <li className="flex items-center space-x-3">
-                <svg
-                  className="w-5 h-5 text-gray-200"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span className="text-gray-200">719-867-9977</span>
-              </li>
             </ul>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t bg-gray-900 ">
+      <div className="border-t bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <span className="text-sm text-white">
+              © 2025, Revmedics, LLC. All Rights Reserved.
+            </span>
             <div className="flex items-center space-x-4">
-              <span className=" text-sm text-white">
-                © 2025, Revmedics, LLC. All Rights Reserved.
-              </span>
-            </div>
-
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-4 ">
+              {[
+                {
+                  href: "https://linkedin.com",
+                  icon: <Linkedin className="w-5 h-5" />,
+                },
+                {
+                  href: "https://facebook.com",
+                  icon: <Facebook className="w-5 h-5" />,
+                },
+                {
+                  href: "https://twitter.com",
+                  icon: <Twitter className="w-5 h-5" />,
+                },
+              ].map((item, idx) => (
                 <Link
-                  href="https://linkedin.com"
-                  className=" hover:text-gray-100 text-white"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="https://facebook.com"
+                  key={idx}
+                  href={item.href}
                   className="text-white hover:text-gray-100"
+                  target="_blank"
                 >
-                  <Facebook className="w-5 h-5" />
+                  {item.icon}
                 </Link>
-                <Link
-                  href="https://twitter.com"
-                  className="text-white hover:text-gray-100"
-                >
-                  <Twitter className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="https://pinterest.com"
-                  className="text-white hover:text-gray-100"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" />
-                  </svg>
-                </Link>
-              </div>
-              {/* <div className="flex items-center space-x-4 text-sm">
-                <Link
-                  href="/privacy"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Privacy Policy
-                </Link>
-                <span className="text-gray-300">|</span>
-                <Link
-                  href="/terms"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Terms & Conditions
-                </Link>
-              </div> */}
+              ))}
             </div>
           </div>
         </div>
