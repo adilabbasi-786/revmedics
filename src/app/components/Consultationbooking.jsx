@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 export default function ConsultationBooking() {
   const [formData, setFormData] = useState({
@@ -365,8 +366,19 @@ export default function ConsultationBooking() {
                       instructions, lab notifications, and billing
                       notifications. Message frequency varies. Message and data
                       rates may apply. See privacy policy at
-                      https://www.therevmedics.com/. Message HELP for help.
-                      Reply STOP to any message to opt out.
+                      <span>
+                        {" "}
+                        <a
+                          href="https://www.therevmedics.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 underline"
+                        >
+                          https://www.therevmedics.com
+                        </a>
+                      </span>
+                      . Message HELP for help. Reply STOP to any message to opt
+                      out.
                     </p>
                   </div>
                 </div>
