@@ -12,7 +12,7 @@ import CertificationPage from "./components/Certification";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
         <HeroSection className="mb-24" />

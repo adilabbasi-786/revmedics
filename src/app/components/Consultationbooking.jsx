@@ -355,6 +355,20 @@ export default function ConsultationBooking() {
                       <span>No</span>
                     </label>
                   </div>
+                  <div className="mt-2 p-1">
+                    <h1 className="text-md font-bold">SMS Terms of Service</h1>
+                    <p className="mt-2 text-sm">
+                      SMS Terms of Service By opting into SMS from a web form or
+                      other medium, you are agreeing to receive SMS messages
+                      from Revmedics. This includes SMS messages for appointment
+                      scheduling, appointment reminders, post-visit
+                      instructions, lab notifications, and billing
+                      notifications. Message frequency varies. Message and data
+                      rates may apply. See privacy policy at
+                      https://www.therevmedics.com/. Message HELP for help.
+                      Reply STOP to any message to opt out.
+                    </p>
+                  </div>
                 </div>
 
                 {/* Submit Button */}
