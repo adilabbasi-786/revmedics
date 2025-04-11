@@ -369,12 +369,11 @@ export default function ConsultationBooking() {
                       <span>
                         {" "}
                         <a
-                          href="https://www.therevmedics.com"
-                          target="_blank"
+                          href="/privacy"
                           rel="noopener noreferrer"
                           className="text-blue-500 underline"
                         >
-                          https://www.therevmedics.com
+                          Privacy Ploicy
                         </a>
                       </span>
                       . Message HELP for help. Reply STOP to any message to opt

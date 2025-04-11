@@ -19,21 +19,24 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div className=" pl-4 lg:pl-18 lg:mt-12 mt-0 ">
-            <h3 className="text-xl font-bold mb-4 text-white">Our Services</h3>
+
+          <div className="pl-4 lg:pl-18 lg:mt-12 mt-0">
+            <h3 className="text-xl font-bold mb-4 text-white">
+              Legal Information
+            </h3>
             <ul className="space-y-2">
-              {[
-                "Medical Billing Services",
-                "Medical Credentials Services",
-                "Medical Coding Services",
-                "Digital Management Services",
-                "Out of Network Billing Services",
-                "Revenue Cycle Management",
-              ].map((service, idx) => (
-                <li key={idx} className="text-gray-200">
-                  {service}
-                </li>
-              ))}
+              <li>
+                <a href="/privacy" className="text-gray-200 hover:underline">
+                  Privay Policy
+                </a>
+              </li>
+            </ul>
+            <ul className="space-y-2">
+              <li>
+                <a href="/terms" className="text-gray-200 hover:underline">
+                  Terms And Conditions
+                </a>
+              </li>
             </ul>
           </div>
 
