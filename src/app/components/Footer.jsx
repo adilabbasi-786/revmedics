@@ -38,6 +38,13 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+            <ul className="space-y-2">
+              <li>
+                <a href="/contactus" className="text-gray-200 hover:underline">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
           </div>
 
           {/* Empty Column for Flexibility or Future Use */}

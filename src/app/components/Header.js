@@ -39,13 +39,9 @@ const Header = () => {
   };
 
   const navItems = [
-    { name: "Home", link: "/", hasDropdown: false },
-    { name: "Why iRCM", link: "/why-ircm", hasDropdown: true },
-    { name: "Services", link: "/services", hasDropdown: true },
-    { name: "Specialties", link: "/specialties", hasDropdown: true },
-    { name: "Domain Areas", link: "/domain-areas", hasDropdown: true },
-    { name: "Resources", link: "/resources", hasDropdown: true },
-    { name: "Contact Us", link: "/contact", hasDropdown: false },
+    { name: "Privacy Policy", link: "/privacy", hasDropdown: false },
+    { name: "Terms & Conditions", link: "/terms", hasDropdown: false },
+    { name: "Contact Us", link: "/contactus", hasDropdown: false },
   ];
 
   return (
@@ -92,50 +88,18 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          {/* <nav className="hidden lg:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-start space-x-6">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
-                <button
+                <Link
+                  href={item.link}
                   className="flex items-center text-gray-700 hover:text-[#1e3a5f] font-medium"
-                  onClick={() => item.hasDropdown && toggleDropdown(item.name)}
                 >
                   {item.name}
-                  {item.hasDropdown && (
-                    <ChevronDown size={16} className="ml-1" />
-                  )}
-                </button>
-
-                {item.hasDropdown && (
-                  <div
-                    className={`absolute top-full left-0 w-48 bg-white shadow-lg rounded-md py-2 mt-1 transition-all duration-200 ${
-                      activeDropdown === item.name
-                        ? "opacity-100 visible"
-                        : "opacity-0 invisible"
-                    }`}
-                  >
-                    <Link
-                      href={`${item.link}/option1`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Option 1
-                    </Link>
-                    <Link
-                      href={`${item.link}/option2`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Option 2
-                    </Link>
-                    <Link
-                      href={`${item.link}/option3`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Option 3
-                    </Link>
-                  </div>
-                )}
+                </Link>
               </div>
             ))}
-          </nav> */}
+          </nav>
 
           {/* Search Button */}
           <div className="hidden lg:flex">
